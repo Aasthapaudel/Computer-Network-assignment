@@ -27,7 +27,7 @@ Find the cheapest price for a flight from a source city to a destination city wi
 
 Given a graph representing cities and distances between them, find the city with the smallest number of neighbors within a given distance threshold.
 
-Refer to the document [Understanding LeetCode Problems](docs/leetcode_problems.md) for detailed explanations and code.
+Refer to the document [Understanding LeetCode Problems](Leetcode/readme.md) for detailed explanations and code.
 
 ## Computer Network Assignments
 
@@ -39,25 +39,25 @@ This problem involves finding the minimum time for a signal to travel through a 
 
 Exercises using Cisco Packet Tracer to simulate and analyze network behavior, configurations, and protocols.
 
-Refer to the document [Computer Network Assignments](docs/computer_network_assignments.md) for detailed explanations and configurations.
+Refer to the document [Computer Network Assignments](Assignment_Details/ReadMe.md) for detailed explanations and configurations.
 
 ## BitTorrent Client
 
 A project to build a BitTorrent client using Python. The client allows downloading and uploading files using the BitTorrent protocol.
 
-Refer to the document [BitTorrent Client](docs/bittorrent_client.md) for detailed explanations and code.
+Refer to the document [BitTorrent Client](Bittorrent_client/Readme) for detailed explanations and code.
 
 ## Wireshark Analysis
 
 Using Wireshark to capture and analyze network packets to understand the behavior of network protocols and identify issues.
 
-Refer to the document [Wireshark Analysis](docs/wireshark_analysis.md) for detailed explanations and analysis results.
+Refer to the document [Wireshark Analysis](wireshark/file-upload-app/readme.md) for detailed explanations and analysis results.
 
 ## What Happens When You Type www.google.com
 
 A detailed step-by-step explanation of what happens when you type "www.google.com" into a browser, including DNS resolution, TCP/IP stack operations, and HTTP request/response cycle.
 
-Refer to the document [What Happens When You Type www.google.com](docs/what_happens_when_you_type_google.md) for a comprehensive explanation.
+Refer to the document [What Happens When You Type www.google.com](URL_browser/ReadMe.md) for a comprehensive explanation.
 
 ## Packet Tracer Exercises
 

@@ -1,6 +1,4 @@
-Sure! Here is a comprehensive `README.md` file that includes all the detailed information about the various projects and problems described, along with instructions on how to run the projects locally.
 
-```markdown
 # Comprehensive Guide to Projects and Assignments
 
 This repository includes a collection of projects and assignments covering various topics such as LeetCode problems, computer network assignments, a BitTorrent client, Wireshark analysis, a detailed explanation of the process when typing "www.google.com" into a browser, and Packet Tracer exercises.
@@ -136,4 +134,3 @@ Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) fo
 
 This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-```

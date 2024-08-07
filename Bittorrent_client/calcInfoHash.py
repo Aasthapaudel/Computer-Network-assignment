@@ -39,5 +39,5 @@ def main(file_path):
     print(f"Info Hash: {info_hash}")
 
 if __name__ == "__main__":
-    file_path = "ComputerNetworks.torrent"  # Replace with the actual torrent file name
+    file_path ="sample.torrent"  # Replace with the actual torrent file name
     main(file_path)

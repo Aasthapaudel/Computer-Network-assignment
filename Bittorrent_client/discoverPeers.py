@@ -1,7 +1,6 @@
 import bencodepy as ben
 import hashlib as hash
 import requests
-from urllib.parse import quote_from_bytes
 import socket
 
 def decode_bencode(bencoded_value):
@@ -31,37 +30,75 @@ def get_torrent_info(file_path):
         info_hash = hash.sha1(bencoded_info).digest()
         
         return tracker_url, info_hash, length
-
-def get_peers(tracker_url, info_hash,length):
     
-    #Makes a GET request to the tracker URL to retrieve peers.
-    print(info_hash)
-    # Use quote_from_bytes to correctly encode the info_hash
+def get_peers(tracker_url, info_hash, length):
+    """
+    Makes a GET request to the tracker URL to retrieve peers.
+    """
+    # Print the info hash for debugging
+    print(f"Info Hash (raw): {info_hash}")
+
+    # URL encode the info hash
     encoded_info_hash = info_hash.hex()
-    print(encoded_info_hash)
+    print(f"Encoded Info Hash: {encoded_info_hash}")
+
+    # Generate a random peer ID
+    peer_id = b'-PC0001-' + hash.md5().digest()[0:12]
+
+    # Define the parameters for the GET request
     params = {
         'info_hash': info_hash,
-        'peer_id': b'-PC0001-' + hash.md5().digest()[0:12],  # Random peer ID
+        'peer_id': peer_id,
         'port': 6881,
         'uploaded': 0,
         'downloaded': 0,
         'left': length,
-        'compact': 1,
+        'compact': 1,  # Request compact peer list
         'event': 'started'
     }
 
-    response = requests.get(tracker_url, params=params)
-    decoded_response = decode_bencode(response.content)
-    raw_peers = decoded_response[b"peers"]
-    def decode_string(data):
-        return data.decode('utf-8') if isinstance(data, bytes) else data
-    
-    peer_list = []
-    for i in range(len(raw_peers)):
-        raw_peers[i] = {decode_string(k): decode_string(v) if isinstance(v, bytes) else v for k, v in raw_peers[i].items()}
-        peerElem = raw_peers[i]['ip'] + ":" + str(raw_peers[i]['port']) 
-        peer_list.append(peerElem)
+    # Send the GET request to the tracker
+    response = requests.get(tracker_url, params=params, timeout=10)
+        
 
+    # Decode the tracker response
+    try:
+        decoded_response = decode_bencode(response.content)
+    except Exception as e:
+        print(f"Error decoding response from tracker: {e}")
+        return []
+
+    # Check if the response contains 'peers'
+    if b"peers" not in decoded_response:
+        print("No peers found in tracker response.")
+        return []
+
+    raw_peers = decoded_response[b"peers"]
+
+    # Determine if the peers list is in compact format
+    peer_list = []
+
+    if isinstance(raw_peers, bytes):
+        # Compact format: decode as 6-byte chunks
+        print("Tracker returned peers in compact format.")
+        for i in range(0, len(raw_peers), 6):
+            ip = socket.inet_ntoa(raw_peers[i:i + 4])
+            port = int.from_bytes(raw_peers[i + 4:i + 6], byteorder='big')
+            peer_list.append(f"{ip}:{port}")
+    elif isinstance(raw_peers, list):
+        # Non-compact format: decode each peer dictionary
+        def decode_string(data):
+            return data.decode('utf-8') if isinstance(data, bytes) else data
+        
+        for peer_dict in raw_peers:
+            if isinstance(peer_dict, dict):
+                # Decode each peer's information
+                peer_info = {decode_string(k): decode_string(v) for k, v in peer_dict.items()}
+                ip = peer_info.get('ip', '')
+                port = peer_info.get('port', '')
+                peer_list.append(f"{ip}:{port}")
+
+    print(f"Found peers: {peer_list}")
     return peer_list
 
 def main(file_path):
@@ -75,5 +112,5 @@ def main(file_path):
         print(peer)
 
 if __name__ == "__main__":
-    file_path = "ComputerNetworks.torrent"  # Replace with the actual torrent file name
+    file_path = "sample.torrent"  # Replace with the actual torrent file name
     main(file_path)

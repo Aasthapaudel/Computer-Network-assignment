@@ -2,7 +2,7 @@ import socket
 import requests
 import hashlib as hash
 import bencodepy as ben
-#b'\x95\x8e$\x87\xd2\xdb_A\xf9\xc0V\xbb5\xcfT~\xdf8R\x8f'
+
 def decode_bencode(bencoded_value):
     """
     Decodes a bencoded value using the bencodepy library.
@@ -30,38 +30,6 @@ def get_torrent_info(file_path):
         info_hash = hash.sha1(bencoded_info).digest()
         
         return tracker_url, info_hash, length
-
-""" def get_peers(tracker_url, info_hash,length):
-    
-    #Makes a GET request to the tracker URL to retrieve peers.
-    print(info_hash)
-    # Use quote_from_bytes to correctly encode the info_hash
-    encoded_info_hash = info_hash.hex()
-    print(encoded_info_hash)
-    params = {
-        'info_hash': info_hash,
-        'peer_id': b'-PC0001-' + hash.md5().digest()[0:12],  # Random peer ID
-        'port': 6881,
-        'uploaded': 0,
-        'downloaded': 0,
-        'left': length,
-        'compact': 1,
-        'event': 'started'
-    }
-
-    response = requests.get(tracker_url, params=params)
-    decoded_response = decode_bencode(response.content)
-    raw_peers = decoded_response[b"peers"]
-    def decode_string(data):
-        return data.decode('utf-8') if isinstance(data, bytes) else data
-    
-    peer_list = []
-    for i in range(len(raw_peers)):
-        raw_peers[i] = {decode_string(k): decode_string(v) if isinstance(v, bytes) else v for k, v in raw_peers[i].items()}
-        peerElem = raw_peers[i]['ip'] + ":" + str(raw_peers[i]['port']) 
-        peer_list.append(peerElem)
-
-    return peer_list """
 
 def get_peers(tracker_url, info_hash, length):
     """

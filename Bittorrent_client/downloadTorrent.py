@@ -33,36 +33,6 @@ def get_torrent_info(file_path):
         
         return tracker_url, info_hash, length, piece_length, pieces_hash
 
-""" def get_peers(tracker_url, info_hash, length):
-    '
-    Makes a GET request to the tracker URL to retrieve peers.
-    '
-    params = {
-        'info_hash': info_hash,
-        'peer_id': b'-PC0001-' + hash.md5().digest()[0:12],  # Random peer ID
-        'port': 6881,
-        'uploaded': 0,
-        'downloaded': 0,
-        'left': length,
-        'compact': 1,
-        'event': 'started'
-    }
-
-    response = requests.get(tracker_url, params=params)
-    decoded_response = decode_bencode(response.content)
-    raw_peers = decoded_response[b"peers"]
-
-    def decode_string(data):
-        return data.decode('utf-8') if isinstance(data, bytes) else data
-    
-    peer_list = []
-    for i in range(len(raw_peers)):
-        raw_peers[i] = {decode_string(k): decode_string(v) if isinstance(v, bytes) else v for k, v in raw_peers[i].items()}
-        peerElem = raw_peers[i]['ip'] + ":" + str(raw_peers[i]['port']) 
-        peer_list.append(peerElem)
-
-    return peer_list """
-
 def get_peers(tracker_url, info_hash, length):
     """
     Makes a GET request to the tracker URL to retrieve peers.
@@ -136,40 +106,7 @@ def get_peers(tracker_url, info_hash, length):
 
     print(f"Found peers: {peer_list}")
     return peer_list
-""" 
-def receive_message(sock):
-    
-    #Receives a message from the peer and returns its length prefix, message ID, and payload. 
-    
-    
-    
-    length_prefix = bytearray()
-    while len(length_prefix) < 4:
-        packet = sock.recv(4 - len(length_prefix))
-        if not packet:
-            raise Exception("Failed to receive the length prefix.")
-        length_prefix.extend(packet)
 
-    
-    message_length = int.from_bytes(length_prefix, byteorder='big')
-    if message_length == 0:
-        return None, None, None
-    
-    # Adjusting to ensure we receive the full message
-    message = bytearray()
-    while len(message) < message_length:
-        packet = sock.recv(message_length - len(message))
-        if not packet:
-            raise Exception("Failed to receive the full message.")
-        message.extend(packet)
-    
-    if len(message) < message_length:
-        raise Exception("Failed to receive the full message.")
-    
-    message_id = message[0]
-    payload = message[1:]
-    
-    return message_length, message_id, payload """
 
 def receive_message(sock):
     """
@@ -278,8 +215,6 @@ def send_request_message(sock, index, begin, length):
         payload
     )
     sock.sendall(request_message)
-
-
 
 
 def download_piece(sock, piece_index, piece_length, output_path, max_retries=3):

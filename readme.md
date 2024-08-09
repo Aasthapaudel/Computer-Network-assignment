@@ -51,7 +51,7 @@ Refer to the document [BitTorrent Client](Bittorrent_client/Readme) for detailed
 
 Using Wireshark to capture and analyze network packets to understand the behavior of network protocols and identify issues.
 
-Refer to the document [Wireshark Analysis](wireshark/file-upload-app/readme.md) for detailed explanations and analysis results.
+Refer to the document [Wireshark Analysis](wireshark) for detailed explanations and analysis results.
 
 ## What Happens When You Type www.google.com
 
@@ -65,7 +65,7 @@ Refer to the document [What Happens When You Type www.google.com](URL_browser/Re
 
 Exercises using Cisco Packet Tracer to simulate network scenarios, including configuration of routers, switches, and other network devices, and analysis of network protocols.
 
-Refer to the document [Packet Tracer Exercises](docs/packet_tracer_exercises.md) for detailed configurations and analysis.
+Refer to the document [Packet Tracer Exercises](Packet_Tracer) for detailed configurations and analysis.
 
 ## Running the Projects Locally
 
@@ -88,49 +88,23 @@ cd Computer-Network-assignment
 
 1. Navigate to the BitTorrent client directory:
     ```bash
-    cd bittorrent_client
+    cd Bittorrent_client
     ```
-2. Install the required dependencies:
+
+2. Run the client:
     ```bash
-    pip install -r requirements.txt
-    ```
-3. Run the client:
-    ```bash
-    python client.py
+    python downloadTorrent.py
     ```
 
-### Running the LeetCode Solutions
 
-1. Navigate to the LeetCode solutions directory:
-    ```bash
-    cd leetcode_solutions
-    ```
-2. Run the desired solution script:
-    ```bash
-    python network_delay_time.py
-    ```
-    or
-    ```bash
-    python cheapest_flights.py
-    ```
 
-### Running Wireshark Analysis
 
-1. Open Wireshark.
-2. Start a packet capture on your network interface.
-3. Analyze the captured packets based on the provided instructions in the [Wireshark Analysis](docs/wireshark_analysis.md) document.
-
-### Packet Tracer Exercises
-
-1. Open Cisco Packet Tracer.
-2. Load the provided Packet Tracer files from the `packet_tracer_exercises` directory.
-3. Follow the steps outlined in the [Packet Tracer Exercises](docs/packet_tracer_exercises.md) document to complete the simulations.
 
 ## Contributing
 
-Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to this repository.
+Contributions are welcome! Please read the [CONTRIBUTING.md]() for guidelines on how to contribute to this repository.
 
 ## License
 
-This repository is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+This repository is licensed under the MIT License. See the [LICENSE]() file for more information.
 

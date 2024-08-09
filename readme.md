@@ -65,7 +65,7 @@ Refer to the document [What Happens When You Type www.google.com](URL_browser/Re
 
 Exercises using Cisco Packet Tracer to simulate network scenarios, including configuration of routers, switches, and other network devices, and analysis of network protocols.
 
-Refer to the document [Packet Tracer Exercises](Packet_Tracer) for detailed configurations and analysis.
+Refer to the document [Packet Tracer Exercises](Assignment_Details\Bibektimilsina_packet_tracer) for detailed configurations and analysis.
 
 ## Running the Projects Locally
 
@@ -104,7 +104,5 @@ cd Computer-Network-assignment
 
 Contributions are welcome! Please read the [CONTRIBUTING.md]() for guidelines on how to contribute to this repository.
 
-## License
 
-This repository is licensed under the MIT License. See the [LICENSE]() file for more information.
 

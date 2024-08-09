@@ -17,6 +17,7 @@ This repository includes a collection of projects and assignments covering vario
 
 ### Network Delay Time Problem
 
+This problem involves finding the minimum time for a signal to travel through a network of nodes and edges using Dijkstra's algorithm.
 Given a network of `n` nodes linked by directed edges, where each edge represents a connection with a specific travel time. You are also given a source node `k`. The problem asks to find the minimum time it takes for a signal sent from `k` to reach all other nodes in the network. If it's impossible for all nodes to receive the signal, the output is -1.
 
 ### Cheapest Flights with K Stops
@@ -31,9 +32,7 @@ Refer to the document [Understanding LeetCode Problems](Leetcode/readme.md) for 
 
 ## Computer Network Assignments
 
-### Network Delay Time
-
-This problem involves finding the minimum time for a signal to travel through a network of nodes and edges using Dijkstra's algorithm.
+Refer to the document [Computer Network Assignments](Assignment_Details/ReadMe.md) for detailed explanations and configurations.
 
 ### Packet Tracer Exercises
 
